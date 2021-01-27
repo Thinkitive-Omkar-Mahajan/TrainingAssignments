@@ -1,0 +1,18 @@
+.inputText {
+    border: 1px solid black;
+}
+
+.buttonStyle {
+    width: 70px;
+    height: 45px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left {}
+
+.right {}
