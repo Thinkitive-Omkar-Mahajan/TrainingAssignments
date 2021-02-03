@@ -12,7 +12,11 @@
 		Id:<input type="text" name="id"/><br/>
 		Name:<input type="text" name="name"/><br/>
 		Salary:<input type="text" name="salary"/><br/>
-		<input type="submit"> 
+		<input type="submit" value="Add">
+		<input formaction="delete" formmethod="get" type="submit" value="Delete">
+		<input formaction="update" formmethod="get" type="submit" value="Update">
+		<input formaction="getemp" formmethod="get" type="submit" value="getEmployee">
+		<input formaction="getall" formmethod="get" type="submit" value="All Employee"> 
 	</form>
 </body>
 </html>

@@ -27,34 +27,30 @@ public class HomeController {
 	public String hello(int id, String name, int salary) {
 		service.addEmployee(new Employee(id, name, salary));
 		System.out.println("Employee Added");
-		return "home.html";
+		return "index";
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete")
 	public String delete(int id, String name, int salary) {
 		service.deleteEmployee(new Employee(id, name, salary));
-		System.out.println("Employee Added");
-		return "home.html";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/update")
 	public String update(int id, String name, int salary) {
 		service.updateEmployee(new Employee(id, name, salary));
-		System.out.println("Employee Added");
-		return "home.html";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/getemp")
-	public String getemp(int id, String name, int salary) {
+	public String getemp(int id) {
 		service.getEmployee(id);
-		System.out.println("Employee Added");
-		return "home.html";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/getall")
 	public String getall() {
-		service.getAll();
-		System.out.println("Employee Added");
-		return "home.html";
+		System.out.println(service.getAll());
+		return "index";
 	}
 }
