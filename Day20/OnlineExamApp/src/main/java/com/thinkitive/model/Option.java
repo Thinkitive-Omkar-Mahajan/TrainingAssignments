@@ -1,17 +1,30 @@
 package com.thinkitive.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "option_table")
+@Entity
+@Table(name = "option_table")
 public class Option {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long optionId;
 	private Long questionId;
 	private int optionNumber;
-	private int optionTitle;
+	private String optionTitle;
 	
 	public Option() {
+	}
+
+	public Option(Long optionId, Long questionId, int optionNumber, String optionTitle) {
+		super();
+		this.optionId = optionId;
+		this.questionId = questionId;
+		this.optionNumber = optionNumber;
+		this.optionTitle = optionTitle;
 	}
 
 	public Long getOptionId() {
@@ -38,19 +51,22 @@ public class Option {
 		this.optionNumber = optionNumber;
 	}
 
-	public int getOptionTitle() {
+	public String getOptionTitle() {
 		return optionTitle;
 	}
 
-	public void setOptionTitle(int optionTitle) {
+	public void setOptionTitle(String optionTitle) {
 		this.optionTitle = optionTitle;
 	}
+
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((optionId == null) ? 0 : optionId.hashCode());
+		result = prime * result + ((questionId == null) ? 0 : questionId.hashCode());
 		return result;
 	}
 
@@ -67,6 +83,11 @@ public class Option {
 			if (other.optionId != null)
 				return false;
 		} else if (!optionId.equals(other.optionId))
+			return false;
+		if (questionId == null) {
+			if (other.questionId != null)
+				return false;
+		} else if (!questionId.equals(other.questionId))
 			return false;
 		return true;
 	}

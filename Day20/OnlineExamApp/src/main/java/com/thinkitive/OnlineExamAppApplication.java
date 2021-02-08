@@ -9,5 +9,5 @@ public class OnlineExamAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineExamAppApplication.class, args);
 	}
-
+	
 }

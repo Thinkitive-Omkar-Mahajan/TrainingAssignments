@@ -1,31 +1,39 @@
 package com.thinkitive.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "question_table")
+@Entity
+@Table(name = "question_table")
 public class Question {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long questionId;
 	private Long examId;
 	private String questionTitle;
 	private int questionAnswerOption;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Option> opt;
 	
 	public Question() {
 	}
 
-	public Question(Long questionId, Long examId, String questionTitle, int questionAnswerOption) {
+	public Question(Long questionId, Long examId, String questionTitle, int questionAnswerOption, List<Option> opt) {
 		super();
 		this.questionId = questionId;
 		this.examId = examId;
 		this.questionTitle = questionTitle;
 		this.questionAnswerOption = questionAnswerOption;
+		this.opt = opt;
 	}
 
 	public Long getQuestionId() {
@@ -58,6 +66,14 @@ public class Question {
 
 	public void setQuestionAnswerOption(int questionAnswerOption) {
 		this.questionAnswerOption = questionAnswerOption;
+	}
+
+	public List<Option> getOpt() {
+		return opt;
+	}
+
+	public void setOpt(List<Option> opt) {
+		this.opt = opt;
 	}
 
 	@Override

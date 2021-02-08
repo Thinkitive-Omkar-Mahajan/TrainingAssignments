@@ -2,20 +2,24 @@ package com.thinkitive.model;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.thinkitive.enums.ExamStatus;
 
-//@Entity
-//@Table(name = "online_exam_table")
+@Entity
+@Table(name = "online_exam_table")
 public class Online_Exam {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long examId;
 	private Long teacherId;
 	private String examTitle;
@@ -26,12 +30,16 @@ public class Online_Exam {
 	private int markForWrongAnswer;
 	private ExamStatus examStatus;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Question> que;
+
 	public Online_Exam() {
 		
 	}
 
 	public Online_Exam(Long examId, Long teacherId, String examTitle, LocalDateTime examTime, LocalTime examDuration,
-			int examTotalQuestion, int markForRightAnswer, int markForWrongAnswer, ExamStatus examStatus) {
+			int examTotalQuestion, int markForRightAnswer, int markForWrongAnswer, ExamStatus examStatus,
+			List<Question> que) {
 		super();
 		this.examId = examId;
 		this.teacherId = teacherId;
@@ -42,6 +50,7 @@ public class Online_Exam {
 		this.markForRightAnswer = markForRightAnswer;
 		this.markForWrongAnswer = markForWrongAnswer;
 		this.examStatus = examStatus;
+		this.que = que;
 	}
 
 	public Long getExamId() {
@@ -116,6 +125,14 @@ public class Online_Exam {
 		this.examStatus = examStatus;
 	}
 
+	public List<Question> getQue() {
+		return que;
+	}
+
+	public void setQue(List<Question> que) {
+		this.que = que;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -140,5 +157,12 @@ public class Online_Exam {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Online_Exam [examId=" + examId + ", teacherId=" + teacherId + ", examTitle=" + examTitle + ", examTime="
+				+ examTime + ", examDuration=" + examDuration + ", examTotalQuestion=" + examTotalQuestion
+				+ ", markForRightAnswer=" + markForRightAnswer + ", markForWrongAnswer=" + markForWrongAnswer
+				+ ", examStatus=" + examStatus + ", que=" + que + "]";
+	}
 }
