@@ -9,6 +9,8 @@ import com.thinkitive.model.userExamQuestionAnswer;
 
 public interface UserExamQuestionAnswerRepo extends JpaRepository<userExamQuestionAnswer, Long> {
 	
-	@Query("select * from exam_question_answer_table where userId=?1 and examId=?2")
-	public List<userExamQuestionAnswer> findByuserAndExamId(int id, int examid);
+	@Query("from userExamQuestionAnswer where userId=?1 and examId=?2")
+	public List<userExamQuestionAnswer> findByuserAndExamId(Long id,Long examid);
 }
+
+//select * from exam_question_answer_table where user_id=1 and exam_id=1 

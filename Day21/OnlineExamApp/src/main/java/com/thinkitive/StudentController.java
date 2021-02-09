@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.thinkitive.model.ExamEnroll;
 import com.thinkitive.model.User;
+import com.thinkitive.model.userExamQuestionAnswer;
+import com.thinkitive.pojoclasses.Score;
 import com.thinkitive.service.ExamEnrollService;
+import com.thinkitive.service.UserExamQuestionAnswerService;
 import com.thinkitive.service.UserService;
 
 @RestController
@@ -20,6 +23,9 @@ public class StudentController {
 	private UserService uservice;
 	@Autowired
 	private ExamEnrollService enrollService;
+	@Autowired 
+	private UserExamQuestionAnswerService qaService; 	
+	
 	/* Registration Section*/
 	/*Start*/
 	@GetMapping("/add")
@@ -38,6 +44,17 @@ public class StudentController {
 	public ExamEnroll unenrollStudent(@RequestBody ExamEnroll enroll) {
 		enrollService.unerollFromExam(enroll);
 		return enroll;
+	}
+	
+	@PostMapping("/answer")
+	public userExamQuestionAnswer answerbystudent(@RequestBody userExamQuestionAnswer QA) {
+		qaService.addQuestionWithAnswer(QA);
+		return QA;
+	}
+	
+	@GetMapping("/score")
+	public String studentScore(@RequestBody Score score) {
+		return String.valueOf(qaService.CalculateScore(score.getUserId(), score.getExamId()));
 	}
 	/*End*/
 }
